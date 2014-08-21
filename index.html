@@ -1,0 +1,36 @@
+
+<html><head>
+
+  <meta charset="UTF-8">
+
+  <title>todo-list  - CodePen</title>
+
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="javascript/todo.js"></script>
+
+</head>
+
+<body>
+	<!--
+
+1) A user can make a list of todo items by typing into a text box and then pressing submit.
+ The list gets rendered below the input box.
+2) A user can delete these todo items by checking a checkbox next to the todo item.
+3) If a user refreshes the page, their todo items do not disappeer and remain intact.
+4) If a user visits another computer, their todo list stays in tact.
+
+-->
+<form>
+  <input name="todo" class="new-todoItem" type="text" />
+  <input type="submit" value="Add todo">
+</form>
+
+<script>
+  todo.build();
+</script>
+
+
+</body></html>
+
+
+
