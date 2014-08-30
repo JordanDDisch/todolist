@@ -1,5 +1,5 @@
 casper.test.begin('Create and delete a todo item', 2, function(test) {
-    casper.start('http://casperjs.local', function() {
+    casper.start('http://todolist.local', function() {
 
         casper.fill('form', {
     	    'todo': 'asdf'
@@ -7,11 +7,11 @@ casper.test.begin('Create and delete a todo item', 2, function(test) {
 
         casper.click("input[type='submit']");
 
-        test.assertExists('#todo-item');
+        test.assertExists('#todo-item-1');
 
-        this.click("#close-button");
+        this.click(".close-button");
 
-        test.assertDoesntExist('#todo-item');
+        test.assertDoesntExist('#todo-item-1');
 
     }).run(function() {
         test.done();

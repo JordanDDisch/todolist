@@ -1,6 +1,18 @@
 todo = {
     todoItems: [],
-    todoItemCount: 0,
+    getHighestTodoItemID: function() {
+        var ids = [];
+        if(todo.todoItems){
+            for (var i=0; i < todo.todoItems.length; i++) {
+                ids.push(todo.todoItems[i].id);
+            }   
+            var max = Math.max.apply(Math, ids);
+            todo.todoItemCount = max;
+        } else {
+            todo.todoItemCount = 0;
+        }  
+
+    },
     getTodoValue: function() {
         return document.getElementsByClassName('new-todoItem')[0].value;
     },
@@ -33,19 +45,19 @@ todo = {
     },
     buildTodoItem: function(todoItem) {
         todo.todoItemCount++;
+        todoItem.id = todo.todoItemCount;
         todo.saveTodoItemLocally(todoItem);
     },
     removeTodoItem: function($) {
 
+
         $('.close-button').click(function(){
-            
             var todoItemID = $(this).parent().attr('id');
             todoItemID = todoItemID.replace("todo-item-", "");
             $(this).parent().remove();
             todoItem = {
                 "id": todoItemID
             }
-            console.log(todoItem.id);
             todo.removeTodoItemLocally(todoItem);
 
         });
@@ -88,6 +100,7 @@ todo = {
     },
     build: function() {
 
+        // creates todo.todoItems
         todo.checkIfLocalTodoItems(
             function() {
                 todo.buildTodoList();
@@ -96,6 +109,8 @@ todo = {
                 localStorage.setItem('todoList', "[]");
             }
         );
+
+        todo.getHighestTodoItemID();
 
         todo.removeTodoItem($);
 
@@ -106,7 +121,7 @@ todo = {
             todo.todoItems = JSON.parse(localStorage.getItem("todoList"));          
 
             todoItem = {
-                value: todo.getTodoValue()
+                value: todo.getTodoValue(),
             }
 
 
@@ -115,10 +130,10 @@ todo = {
                 todo.buildTodoItem(todoItem);
                 todo.buildTodoItemLI(todoItem);
 
-                
-                
-                
             });
+
+            todo.removeTodoItem($);
+
         });
     }
 };
