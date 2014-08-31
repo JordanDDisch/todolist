@@ -1,4 +1,4 @@
-casper.test.begin('Create and delete a todo item', 1, function(test) {
+casper.test.begin('input empty value', 1, function(test) {
     casper.start('http://todolist.dev', function() {
 
         casper.fill('form', {
