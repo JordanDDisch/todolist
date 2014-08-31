@@ -42,6 +42,7 @@ todo = {
         var deleteTextNode = document.createTextNode("delete");
         deleteTask.appendChild(deleteTextNode);
         document.getElementById("todo-list").appendChild(node).appendChild(deleteTask);
+        node.appendChild(deleteTask);
     },
     buildTodoItem: function(todoItem) {
         todo.todoItemCount++;
