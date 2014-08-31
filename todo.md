@@ -1,3 +1,7 @@
+Change name of "close" link to "delete".
+
+Move delete button inside sibling LI
+
 Add test to cover multiple tasks are added and deleted.
 
 Add test to cover tasks persisting on page reload.
