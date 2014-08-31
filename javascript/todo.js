@@ -37,11 +37,11 @@ todo = {
         node.id = "todo-item-" + todoItem.id;
         var textnode = document.createTextNode(todoItem.value);
         node.appendChild(textnode);
-        var closeButton = document.createElement("div");
-        closeButton.className = "close-button";
-        var closeTextNode = document.createTextNode("close");
-        closeButton.appendChild(closeTextNode);
-        document.getElementById("todo-list").appendChild(node).appendChild(closeButton);
+        var deleteTask = document.createElement("div");
+        deleteTask.className = "delete-task";
+        var deleteTextNode = document.createTextNode("delete");
+        deleteTask.appendChild(deleteTextNode);
+        document.getElementById("todo-list").appendChild(node).appendChild(deleteTask);
     },
     buildTodoItem: function(todoItem) {
         todo.todoItemCount++;
@@ -51,7 +51,7 @@ todo = {
     removeTodoItem: function($) {
 
 
-        $('.close-button').click(function(){
+        $('.delete-task').click(function(){
             var todoItemID = $(this).parent().attr('id');
             todoItemID = todoItemID.replace("todo-item-", "");
             $(this).parent().remove();

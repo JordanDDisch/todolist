@@ -9,7 +9,7 @@ casper.test.begin('Create and delete a todo item', 2, function(test) {
 
         test.assertExists('#todo-item-1');
 
-        this.click(".close-button");
+        this.click(".delete-task");
 
         test.assertDoesntExist('#todo-item-1');
 
