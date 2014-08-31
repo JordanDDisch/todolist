@@ -38,7 +38,7 @@ todo = {
         var textnode = document.createTextNode(todoItem.value);
         node.appendChild(textnode);
         var deleteTask = document.createElement("div");
-        deleteTask.className = "delete-task";
+        deleteTask.className = "delete-task delete-task-" + todoItem.id;
         var deleteTextNode = document.createTextNode("delete");
         deleteTask.appendChild(deleteTextNode);
         document.getElementById("todo-list").appendChild(node).appendChild(deleteTask);
