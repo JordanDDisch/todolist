@@ -1,5 +1,5 @@
 casper.test.begin('Create and delete a todo item', 2, function(test) {
-    casper.start('http://todolist.local', function() {
+    casper.start('http://todolist.dev', function() {
 
         casper.fill('form', {
     	    'todo': 'asdf'
