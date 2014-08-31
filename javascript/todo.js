@@ -2,7 +2,7 @@ todo = {
     todoItems: [],
     getHighestTodoItemID: function() {
         var ids = [];
-        if(todo.todoItems){
+        if(!todo.todoItems.length === 0){
             for (var i=0; i < todo.todoItems.length; i++) {
                 ids.push(todo.todoItems[i].id);
             }   
@@ -66,8 +66,9 @@ todo = {
         
     },
     saveTodoItemLocally: function(todoItem) {
+
         todoItemWithKey = {
-            "id": todo.todoItemCount,
+            "id": todoItem.id,
             "value": todoItem.value
         };
         todo.todoItems.push(todoItemWithKey);
