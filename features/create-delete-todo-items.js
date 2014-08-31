@@ -17,9 +17,13 @@ casper.test.begin('Create and delete multiple todo items', 3, function(test) {
 
         test.assertExists('#todo-item-2');
 
-        this.click(".delete-task");
+        this.click(".delete-task-1");
 
         test.assertDoesntExist('#todo-item-1');
+
+        this.click(".delete-task-2");
+
+        test.assertDoesntExist('#todo-item-2');
 
     }).run(function() {
         test.done();
