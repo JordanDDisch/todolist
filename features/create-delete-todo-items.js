@@ -1,31 +1,41 @@
 casper.test.begin('Create and delete multiple todo items', 4, function(test) {
     casper.start('http://todolist.dev', function() {
 
-        localStorage.setItem("todoList","[]");
-
-        casper.fill('form', {
-    	    'todo': 'task 1'
-		});
-
-        casper.click("input[type='submit']");
-
-        test.assertExists('#todo-item-1');
-
-        casper.fill('form', {
-            'todo': 'task 2'
+        casper.evaluate(function(){
+            localStorage.clear();
+            localStorage.setItem("todoList","[]");
         });
 
-        casper.click("input[type='submit']");
+        casper.reload();
 
-        test.assertExists('#todo-item-2');
+        casper.then(function(){
 
-        this.click(".delete-task-1");
+            casper.fill('form', {
+                'todo': 'asdf'
+            });
 
-        test.assertDoesntExist('#todo-item-1');
+            casper.click("input[type='submit']");
 
-        this.click(".delete-task-2");
+            test.assertExists('#todo-item-1');
 
-        test.assertDoesntExist('#todo-item-2');
+            casper.fill('form', {
+                'todo': 'task 2'
+            });
+
+            casper.click("input[type='submit']");
+
+            test.assertExists('#todo-item-2');
+
+            this.click(".delete-task-1");
+
+            test.assertDoesntExist('#todo-item-1');
+
+            this.click(".delete-task-2");
+
+            test.assertDoesntExist('#todo-item-2');
+
+        });
+
 
     }).run(function() {
         test.done();

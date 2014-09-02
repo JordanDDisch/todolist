@@ -1,10 +1,11 @@
 casper.test.begin('Persist local tasks', 2, function(test) {
     casper.start('http://todolist.dev', function() {
 
+        localStorage.clear();
         localStorage.setItem("todoList","[]");
 
         casper.fill('form', {
-            'todo': 'task 1'
+            'todo': 'persist task 1'
         });
 
         casper.click("input[type='submit']");
@@ -14,7 +15,7 @@ casper.test.begin('Persist local tasks', 2, function(test) {
         test.assertExists('#todo-item-1');
 
         casper.fill('form', {
-            'todo': 'task 1'
+            'todo': 'persist task 1'
         });
 
         casper.click("input[type='submit']");
