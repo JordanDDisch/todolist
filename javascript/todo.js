@@ -17,7 +17,7 @@ todo = {
         return document.getElementsByClassName('new-todoItem')[0].value;
     },
     checkIfTodoItemIsEmpty: function(todoItem, callback, error) {
-        if(todoItem == "") {
+        if(todoItem.value == "") {
             if(error) {
                 error();
             } else {
