@@ -5,7 +5,6 @@
 
   <title>todo-list  - CodePen</title>
 
-	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="javascript/todo.js"></script>
 
 </head>
@@ -20,9 +19,9 @@
 4) If a user visits another computer, their todo list stays in tact.
 
 -->
-<form>
+<form id="inputForm">
   <input name="todo" class="new-todoItem" type="text" />
-  <input type="submit" value="Add todo">
+  <input id="submitBtn" type="submit" value="Add todo">
 </form>
 
 <ul id="todo-list"></ul>
