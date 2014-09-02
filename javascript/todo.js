@@ -2,7 +2,7 @@ todo = {
     todoItems: [],
     getHighestTodoItemID: function() {
         var ids = [];
-        if(!todo.todoItems.length === 0){
+        if(!todo.todoItems.length == 0){
             for (var i=0; i < todo.todoItems.length; i++) {
                 ids.push(todo.todoItems[i].id);
             }   
@@ -77,14 +77,14 @@ todo = {
     },
     removeTodoItemLocally: function(todoItem) {
 
-        for (var k in todo.todoItems) {
-          if (!todo.todoItems.hasOwnProperty(k)) continue;
-          if (todo.todoItems[k].id === todoItem.id) {
-            delete todo.todoItems[k];
+        var item;
+
+        for (item in todo.todoItems) {
+          if (todo.todoItems[item].id == todoItem.id) {
+            todo.todoItems.splice(item,1)
           }
         }
 
-        todo.todoItems.splice(todoItem, 1);
         localStorage.setItem('todoList', JSON.stringify(todo.todoItems));
     },
     checkIfLocalTodoItems: function(callback, empty) {
@@ -123,7 +123,7 @@ todo = {
             todo.todoItems = JSON.parse(localStorage.getItem("todoList"));          
 
             todoItem = {
-                value: todo.getTodoValue(),
+                value: todo.getTodoValue()
             }
 
 
