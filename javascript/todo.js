@@ -49,22 +49,23 @@ todo = {
         todoItem.id = todo.todoItemCount;
         todo.saveTodoItemLocally(todoItem);
     },
-    removeTodoItem: function($) {
+    removeTodoItem: function(todoItem) {
 
+        var els = document.getElementsByClassName("delete-task");
 
-        $('.delete-task').click(function(){
-            var todoItemID = $(this).parent().attr('id');
-            todoItemID = todoItemID.replace("todo-item-", "");
-            $(this).parent().remove();
-            todoItem = {
-                "id": todoItemID
+        if(els) {
+            for(var i = 0; i < els.length; i++) {
+                els[i].addEventListener("click", function() {
+                    var todoItemID = this.parentNode.getAttribute('id');
+                    todoItemID = todoItemID.replace("todo-item-", "");
+                    this.parentNode.remove();
+                    todoItem = {
+                       "id": todoItemID
+                    }
+                    todo.removeTodoItemLocally(todoItem);
+                }, false);
             }
-            todo.removeTodoItemLocally(todoItem);
-
-        });
-
-
-        
+        }
     },
     saveTodoItemLocally: function(todoItem) {
 
@@ -86,6 +87,30 @@ todo = {
 
         todo.todoItems.splice(todoItem, 1);
         localStorage.setItem('todoList', JSON.stringify(todo.todoItems));
+    },
+    onFormSubmit: function() {
+        var submitBtnID = document.getElementById("submitBtn");
+        var formClass =  document.getElementsByClassName("new-todoItem")[0];
+
+        formClass.reset();
+
+        submitBtnID.addEventListener("click", function(event) {
+            event.preventDefault(); // this will prevent submitting the form.
+                todo.todoItems = JSON.parse(localStorage.getItem("todoList"));
+
+                todoItem = {
+                    value: todo.getTodoValue()
+                }
+
+                todo.checkIfTodoItemIsEmpty(todoItem, function() {
+
+                    todo.buildTodoItem(todoItem);
+                    todo.buildTodoItemLI(todoItem);
+
+                });
+
+            todo.removeTodoItem();
+        }, false);
     },
     checkIfLocalTodoItems: function(callback, empty) {
         todo.todoItems = JSON.parse(localStorage.getItem("todoList"));
@@ -114,28 +139,8 @@ todo = {
 
         todo.getHighestTodoItemID();
 
-        todo.removeTodoItem($);
+        todo.removeTodoItem();
 
-
-        $("form").submit(function(e) {
-            e.preventDefault(); // this will prevent submitting the form.
-
-            todo.todoItems = JSON.parse(localStorage.getItem("todoList"));          
-
-            todoItem = {
-                value: todo.getTodoValue(),
-            }
-
-
-            todo.checkIfTodoItemIsEmpty(todoItem, function() {
-
-                todo.buildTodoItem(todoItem);
-                todo.buildTodoItemLI(todoItem);
-
-            });
-
-            todo.removeTodoItem($);
-
-        });
+        todo.onFormSubmit();
     }
 };

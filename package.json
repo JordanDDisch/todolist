@@ -1,0 +1,23 @@
+{
+  "name": "todolist",
+  "version": "0.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JordanDDisch/todolist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JordanDDisch/todolist/issues"
+  },
+  "homepage": "https://github.com/JordanDDisch/todolist",
+  "devDependencies": {
+    "gulp-jshint": "^1.8.4",
+    "gulp": "^3.8.8"
+  }
+}
